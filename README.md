@@ -12,28 +12,18 @@ A modern chat interface application with real-time messaging capabilities.
 - 💾 Persistent chat history (with Nhost)
 - ⚡ GraphQL subscriptions for real-time updates
 
-## Demo Mode
+## Configuration
 
-The application runs in demo mode when Nhost credentials are not configured. In demo mode:
-- Chat functionality works locally
-- No user authentication required
-- Messages are not persisted
-- No real-time sync between devices
-
-## Setup for Full Features
-
-To enable full features with user authentication and persistent storage:
-
-1. Create a Nhost project at [nhost.io](https://nhost.io)
-2. Get your subdomain and region from the Nhost dashboard
-3. Create a `.env` file with your credentials:
+This application is configured with Nhost for full functionality:
 
 ```env
-VITE_NHOST_SUBDOMAIN=your-subdomain
-VITE_NHOST_REGION=your-region
+VITE_NHOST_SUBDOMAIN=yvmegydgacgqiqxlffrr
+VITE_NHOST_REGION=ap-south-1
 ```
 
-4. Set up the database schema in your Nhost project:
+## Database Schema
+
+The following database schema is required in your Nhost project:
 
 ### Required Tables
 
