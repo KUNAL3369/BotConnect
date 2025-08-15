@@ -1,13 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import { useAuthenticationStatus } from '@nhost/react';
+import { hasValidConfig } from './lib/nhost';
 import NhostLogin from './components/NhostLogin';
 import NhostSignup from './components/NhostSignup';
 import GraphQLChatInterface from './components/GraphQLChatInterface';
+import DemoModeInterface from './components/DemoModeInterface';
 
 function App() {
   const { isAuthenticated, isLoading } = useAuthenticationStatus();
   const [showSignup, setShowSignup] = useState(false);
+
+  // If no valid Nhost configuration, show demo mode
+  if (!hasValidConfig) {
+    return <DemoModeInterface />;
+  }
 
   if (isLoading) {
     return (
