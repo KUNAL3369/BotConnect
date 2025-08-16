@@ -2,9 +2,8 @@ import { gql } from '@apollo/client';
 
 export const CREATE_CHAT = gql`
   mutation CreateChat($title: String!) {
-    insert_chats_one(object: { title: $title }) {
+    insert_chats_one(object: { user_id: $user_id }) {
       id
-      title
       created_at
       updated_at
       user_id
