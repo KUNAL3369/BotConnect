@@ -77,7 +77,10 @@ export function useChat() {
 
       // Update chat timestamp
       await updateChatTimestamp({
-        variables: { chatId: currentChatId },
+        variables: { 
+          chatId: currentChatId,
+          updatedAt: new Date().toISOString()
+        },
       });
     } catch (error) {
       console.error('Error sending message:', error);

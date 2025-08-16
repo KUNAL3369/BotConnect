@@ -31,10 +31,10 @@ export const CREATE_MESSAGE = gql`
 `;
 
 export const UPDATE_CHAT_TIMESTAMP = gql`
-  mutation UpdateChatTimestamp($chatId: uuid!) {
+  mutation UpdateChatTimestamp($chatId: uuid!, $updatedAt: timestamptz!) {
     update_chats_by_pk(
       pk_columns: { id: $chatId }
-      _set: { updated_at: "now()" }
+      _set: { updated_at: $updatedAt }
     ) {
       id
       updated_at
