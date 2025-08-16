@@ -92,7 +92,7 @@ export default function GraphQLChatInterface() {
     setDeletingChatId(chatId);
     try {
       await deleteChatMutation({
-        variables: { chatId },
+        variables: { user_id: user?.id }
       });
       
       // If we're deleting the current chat, clear the selection
