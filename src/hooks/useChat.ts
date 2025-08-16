@@ -45,9 +45,16 @@ export function useChat() {
 
   // Helper functions
   const createChat = async (title: string) => {
+    if (!user?.id) {
+      throw new Error('User not authenticated');
+    }
+
     try {
       await createChatMutation({
-        variables: { title },
+        variables: { 
+          title,
+          userId: user.id
+        },
       });
     } catch (error) {
       console.error('Error creating chat:', error);
