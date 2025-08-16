@@ -3,7 +3,7 @@ import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { useUserData } from '@nhost/react';
 import { GET_CHATS, GET_CHAT_MESSAGES } from '../graphql/queries';
 import { CHATS_SUBSCRIPTION, MESSAGES_SUBSCRIPTION } from '../graphql/subscriptions';
-import { CREATE_CHAT, CREATE_MESSAGE, UPDATE_CHAT_TIMESTAMP } from '../graphql/mutations';
+import { CREATE_CHAT, CREATE_MESSAGE } from '../graphql/mutations';
 import { Chat, Message } from '../types';
 
 export function useChat() {
@@ -41,8 +41,6 @@ export function useChat() {
 
   const [createMessageMutation] = useMutation(CREATE_MESSAGE);
 
-  const [updateChatTimestamp] = useMutation(UPDATE_CHAT_TIMESTAMP);
-
   // Helper functions
   const createChat = async (title: string) => {
     if (!user?.id) {
@@ -75,13 +73,6 @@ export function useChat() {
         },
       });
 
-      // Update chat timestamp
-      await updateChatTimestamp({
-        variables: { 
-          chatId: currentChatId,
-          updatedAt: new Date().toISOString()
-        },
-      });
     } catch (error) {
       console.error('Error sending message:', error);
       throw error;

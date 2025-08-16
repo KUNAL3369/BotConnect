@@ -30,18 +30,6 @@ export const CREATE_MESSAGE = gql`
   }
 `;
 
-export const UPDATE_CHAT_TIMESTAMP = gql`
-  mutation UpdateChatTimestamp($chatId: uuid!, $updatedAt: timestamptz!) {
-    update_chats_by_pk(
-      pk_columns: { id: $chatId }
-      _set: { updated_at: $updatedAt }
-    ) {
-      id
-      updated_at
-    }
-  }
-`;
-
 export const DELETE_CHAT = gql`
   mutation DeleteChat($chatId: uuid!) {
     delete_messages(where: { chat_id: { _eq: $chatId } }) {
