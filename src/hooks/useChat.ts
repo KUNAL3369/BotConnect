@@ -52,7 +52,6 @@ export function useChat() {
     try {
       await createChatMutation({
         variables: { 
-          title,
           userId: user.id
         },
       });

@@ -45,10 +45,7 @@ export default function GraphQLChatInterface() {
     try {
       // If no current chat, create one
       if (!currentChatId) {
-        const chatTitle = messageContent.length > 50 
-          ? messageContent.substring(0, 50) + '...' 
-          : messageContent;
-        await createChat(chatTitle);
+        await createChat('New Chat');
         // Wait a bit for the chat to be created and currentChatId to be set
         setTimeout(async () => {
           await sendMessage(messageContent, 'user');
@@ -79,7 +76,7 @@ export default function GraphQLChatInterface() {
 
   const handleNewChat = async () => {
     try {
-      await createChat('New Chat');
+      await createChat('');
     } catch (error) {
       console.error('Error creating new chat:', error);
     }
@@ -150,7 +147,7 @@ export default function GraphQLChatInterface() {
                     <MessageSquare className="w-4 h-4 text-gray-400 mt-1 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-900 truncate">
-                        {chat.title}
+                        {chat.title || 'New Chat'}
                       </p>
                       {chat.messages && chat.messages[0] && (
                         <p className="text-xs text-gray-500 truncate mt-1">
